@@ -16,9 +16,8 @@ window.onload = async () => {
     try {
         if (id !== null) {
             document.getElementById('CreateAndEdit').innerText = 'Edit Product';
-            let respons = await fetch(url + "/" + id,
+            let respons = await fetch(url + id,
                 {
-                    method: "PUT",
                     headers: new Headers({
                         "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2M5NDNmM2U3MzczODAwMTUzNzQzYjkiLCJpYXQiOjE2NzQxMzQ1MTYsImV4cCI6MTY3NTM0NDExNn0.nUQdLrMouoKnJbLVQm8jM_JM2p0LEb01vF3co0f2qWY",
                         'Content-Type': 'application/json'
@@ -35,7 +34,6 @@ window.onload = async () => {
 
             } else {
                 console.log(res)
-                throw res.status + " " + res.statusText
             }
         }
 
@@ -44,8 +42,6 @@ window.onload = async () => {
 
     }
 }
-
-
 
 let createProduct = async (submitEvent) => {
     try {
@@ -66,7 +62,16 @@ let createProduct = async (submitEvent) => {
             }),
             body: JSON.stringify(product)
         }
-        let respons = await fetch(url, options)
+        if (id !== null) {
+            options.method = 'PUT';
+            let respons = await fetch(url + id, options)
+        }
+        else {
+
+            let respons = await fetch(url, options)
+        }
+
+
 
     } catch (error) {
         console.log(error)
@@ -74,3 +79,7 @@ let createProduct = async (submitEvent) => {
 
     window.open("http://127.0.0.1:5500/index.html", "_self")
 }
+
+
+
+//add the PUT to the createProduct function 
