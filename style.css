@@ -1,0 +1,10 @@
+.product-col {
+    position: relative;
+}
+
+.badge-success {
+    position: absolute;
+    font-size: 30px;
+    top: 0px;
+    right: 0px;
+}
