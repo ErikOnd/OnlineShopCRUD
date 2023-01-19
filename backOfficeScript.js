@@ -8,10 +8,6 @@ const productBrand = document.getElementById('productBrand');
 const productImageUrl = document.getElementById('productImageUrl');
 const productPrice = document.getElementById('productPrice');
 
-
-
-
-
 window.onload = async () => {
     try {
         if (id !== null) {

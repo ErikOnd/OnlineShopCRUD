@@ -18,32 +18,33 @@ const getProductData = async () => {
         })
         productRow.innerHTML = '';
         allProducts = await respons.json()
-        console.log(allProducts);
-        allProducts.map((product) => {
-            return productRow.innerHTML +=
-                `
-            <div class="col mb-4 product-col">
-                <div class="card h-100">
-                    <img src="${product.imageUrl}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h2 class="card-title">${product.name}</h2>
-                        <p>Brand: ${product.brand}</p>
-                        <p class="card-text">Description:${product.description}</p>
-                        <span class="badge badge-success">${product.price}€</span>
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href='./backoffice.html?id=${product._id}' class='btn btn-primary'> Edit </a>
-                            <a type="button" class="btn btn-danger"  onclick='deleteProduct("${product._id}")'>Delete</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-      `
-        })
-
-
+        createCards(allProducts)
     } catch (error) {
         console.log(error)
     }
+}
+
+const createCards = (allProducts) => {
+    allProducts.map((product) => {
+        return productRow.innerHTML +=
+            `
+        <div class="col mb-4 product-col">
+            <div class="card h-100">
+                <img src="${product.imageUrl}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h2 class="card-title">${product.name}</h2>
+                    <p>Brand: ${product.brand}</p>
+                    <p class="card-text">Description:${product.description}</p>
+                    <span class="badge badge-success">${product.price}€</span>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href='backoffice.html?id=${product._id}' class='btn btn-primary'> Edit </a>
+                        <a type="button" class="btn btn-danger"  onclick='deleteProduct("${product._id}")'>Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+  `
+    })
 }
 
 
