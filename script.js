@@ -32,7 +32,7 @@ const getProductData = async () => {
                         <span class="badge badge-success">${product.price}€</span>
                         <div class="btn-group" role="group" aria-label="Basic example">
                         <a href='./backoffice.html?id=${product._id}' class='btn btn-primary'> Edit </a>
-                            <a type="button" class="btn btn-danger"  onclick='deleteEvent("${product._id}")'>Delete</a>
+                            <a type="button" class="btn btn-danger"  onclick='deleteProduct("${product._id}")'>Delete</a>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ const getProductData = async () => {
 }
 
 
-const deleteEvent = async (idToDelete) => {
+const deleteProduct = async (idToDelete) => {
 
     try {
         let respons = await fetch(url + "/" + idToDelete, {
